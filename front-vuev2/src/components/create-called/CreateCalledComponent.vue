@@ -57,7 +57,7 @@
 								<option selected>Choose...</option>
       							<option value="Urgente">Urgente</option>
       							<option value="Remoto">Remoto</option>
-      							<option value="Nao-Remoto">Não-Remoto</option>
+      							<option value="Nao-remoto">Não-Remoto</option>
 						</select>
 					</div>
 					<div class="mb-3">
@@ -68,7 +68,7 @@
 							name="called_date"
 							class="form-control" 
 							placeholder="YYYY/MM/DD" 
-							v-model="calledForm.date"
+							v-model="calledForm.called_date"
 							:class="{ 'is-invalid' :isSubmitted && $v.calledForm.called_date.$error,}"
 						>
 						<div 
@@ -113,11 +113,11 @@ export default {
 	name : 'CreateCalledComponent',
   data() {
     return {
-		called: {
+		calledForm: {
 			name: null,
 			state : null,
 			category: null,
-			birth: null,
+			called_date: null,
 			description: null 
 		},
 		isSubmitted: false,
@@ -129,7 +129,7 @@ export default {
 		  name: { required },
 		  state: { required },
 		  category: { required },
-		  call_date: { required },
+		  called_date: { required },
 		  description: { required },
 	  }
   },
@@ -156,5 +156,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
