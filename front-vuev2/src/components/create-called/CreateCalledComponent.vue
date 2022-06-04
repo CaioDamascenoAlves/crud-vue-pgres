@@ -5,7 +5,7 @@
 				<h3 class="fw-bold">Add Called</h3>
 			</div>
 			<div class="card-body">
-				<form @submit.prevent="handleSubmitForm()">
+				<form v-on:submit.prevent="handleSubmitForm()">
 					<div class="form-group mb-3">
 						<label class="fw-bold">Called Name</label>
 						<input
@@ -14,11 +14,11 @@
 							name="name"
 							class="form-control"
 							placeholder="Type your name"
-							v-model="called.name"
-							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.name.$error}"
+							v-model="calledForm.name"
+							:class="{'is-invalid' :isSubmitted && $v.calledForm.name.$error,}"
 						/>
 						<div 
-							v-if="isSubimitted && !$v.calledForm.name.required" 
+							v-if="isSubmitted && !$v.calledForm.name.required" 
 								class="invalid-feedback">'Called Name' field is required!
 						</div>
 					</div>
@@ -28,11 +28,13 @@
 							id="state"
 							name="state" 
 							class="form-select" 
-							v-model="called.state"
-							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.state.$error}"
+							v-model="calledForm.state"
+							:class="{ 
+								'is-invalid' :isSubmitted && $v.calledForm.state.$error,
+							}"
 						>
 						<div 
-							v-if="isSubimitted && !$v.calledForm.state.required" 
+							v-if="isSubmitted && !$v.calledForm.state.required" 
 								class="invalid-feedback">'Called State' field is required!
 						</div>
 								<option selected>Choose...</option>
@@ -45,32 +47,32 @@
 							id="category" 
 							name="category"
 							class="form-select" 
-							v-model="called.category"
-							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.category.$error}"
+							v-model="calledForm.category"
+							:class="{ 'is-invalid' :isSubmitted && $v.calledForm.category.$error,}"
 						>
 						<div 
-							v-if="isSubimitted && !$v.calledForm.category.required" 
+							v-if="isSubmitted && !$v.calledForm.category.required" 
 								class="invalid-feedback">'Called Category' field is required!
 						</div>
 								<option selected>Choose...</option>
-      							<option value="1">Urgente</option>
-      							<option value="2">Remoto</option>
-      							<option value="3">Não-Remoto</option>
+      							<option value="Urgente">Urgente</option>
+      							<option value="Remoto">Remoto</option>
+      							<option value="Nao-Remoto">Não-Remoto</option>
 						</select>
 					</div>
 					<div class="mb-3">
 						<label class="fw-bold">Call Date</label>
 						<input 
 							type="date" 
-							id="call_date"
-							name="call_date"
+							id="called_date"
+							name="called_date"
 							class="form-control" 
 							placeholder="YYYY/MM/DD" 
-							v-model="called.date"
-							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.call_date.$error}"
+							v-model="calledForm.date"
+							:class="{ 'is-invalid' :isSubmitted && $v.calledForm.called_date.$error,}"
 						>
 						<div 
-							v-if="isSubimitted && !$v.calledForm.call_date.required" 
+							v-if="isSubmitted && !$v.calledForm.call_date.required" 
 								class="invalid-feedback">'Called Call Date' field is required!
 						</div>
 					</div>
@@ -82,11 +84,11 @@
 							name="description"
 							class="form-control" 
 							placeholder="Enter call details" 
-							v-model="called.description"
-							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.description.$error}" 
+							v-model="calledForm.description"
+							:class="{ 'is-invalid' :isSubmitted && $v.calledForm.description.$error,}" 
 						>
 						<div 
-							v-if="isSubimitted && !$v.calledForm.description.required" 
+							v-if="isSubmitted && !$v.calledForm.description.required" 
 							class="invalid-feedback">'Called Description' field is required!
 						</div>
 					</div>
@@ -108,9 +110,7 @@ import { required } from 'vuelidate/lib/validators';
 import CalledService from '../../../services/CalledService';
 
 export default {
-	components: {
-		name : 'CreateCalledComponent',
-	},
+	name : 'CreateCalledComponent',
   data() {
     return {
 		called: {
@@ -120,7 +120,7 @@ export default {
 			birth: null,
 			description: null 
 		},
-		isSubimitted: false,
+		isSubmitted: false,
     };
 	
   },
@@ -135,7 +135,7 @@ export default {
   },
   methods: {
 	handleSubmitForm() {
-		this.isSubimitted = true;
+		this.isSubmitted = true;
 
 		this.$v.$touch();
 		if (this.$v.$invalid){
