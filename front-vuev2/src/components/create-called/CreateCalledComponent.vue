@@ -1,0 +1,160 @@
+<template>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="fw-bold">Add Called</h3>
+			</div>
+			<div class="card-body">
+				<form @submit.prevent="handleSubmitForm()">
+					<div class="form-group mb-3">
+						<label class="fw-bold">Called Name</label>
+						<input
+							type="text" 
+							id="name"
+							name="name"
+							class="form-control"
+							placeholder="Type your name"
+							v-model="called.name"
+							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.name.$error}"
+						/>
+						<div 
+							v-if="isSubimitted && !$v.calledForm.name.required" 
+								class="invalid-feedback">'Called Name' field is required!
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="fw-bold">State Called</label>
+						<select 
+							id="state"
+							name="state" 
+							class="form-select" 
+							v-model="called.state"
+							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.state.$error}"
+						>
+						<div 
+							v-if="isSubimitted && !$v.calledForm.state.required" 
+								class="invalid-feedback">'Called State' field is required!
+						</div>
+								<option selected>Choose...</option>
+      							<option value="1">New</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label class="fw-bold">Category Called</label>
+						<select 
+							id="category" 
+							name="category"
+							class="form-select" 
+							v-model="called.category"
+							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.category.$error}"
+						>
+						<div 
+							v-if="isSubimitted && !$v.calledForm.category.required" 
+								class="invalid-feedback">'Called Category' field is required!
+						</div>
+								<option selected>Choose...</option>
+      							<option value="1">Urgente</option>
+      							<option value="2">Remoto</option>
+      							<option value="3">Não-Remoto</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label class="fw-bold">Call Date</label>
+						<input 
+							type="date" 
+							id="call_date"
+							name="call_date"
+							class="form-control" 
+							placeholder="YYYY/MM/DD" 
+							v-model="called.date"
+							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.call_date.$error}"
+						>
+						<div 
+							v-if="isSubimitted && !$v.calledForm.call_date.required" 
+								class="invalid-feedback">'Called Call Date' field is required!
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="fw-bold">Description of the Call</label>
+						<input 
+							type="text" 
+							id="description"
+							name="description"
+							class="form-control" 
+							placeholder="Enter call details" 
+							v-model="called.description"
+							:class="{ 'is-invalid' :isSubimitted && $v.calledForm.description.$error}" 
+						>
+						<div 
+							v-if="isSubimitted && !$v.calledForm.description.required" 
+							class="invalid-feedback">'Called Description' field is required!
+						</div>
+					</div>
+					<div class="mb-3 ">
+						<button @click="submitNewCalled" class="btn btn-primary">
+							<font-awesome-icon :icon="['fa-solid', 'fa-file-circle-plus']" />
+							CallOpener
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+
+import { required } from 'vuelidate/lib/validators';
+import CalledService from '../../../services/CalledService';
+
+export default {
+	components: {
+		name : 'CreateCalledComponent',
+	},
+  data() {
+    return {
+		called: {
+			name: null,
+			state : null,
+			category: null,
+			birth: null,
+			description: null 
+		},
+		isSubimitted: false,
+    };
+	
+  },
+  validations: {
+	  calledForm: {
+		  name: { required },
+		  state: { required },
+		  category: { required },
+		  call_date: { required },
+		  description: { required },
+	  }
+  },
+  methods: {
+	handleSubmitForm() {
+		this.isSubimitted = true;
+
+		this.$v.$touch();
+		if (this.$v.$invalid){
+			return;
+		}
+	},
+	async submitNewCalled() {
+		try {
+			await CalledService.createNewCalled(this.calledForm);
+			this.$router.push({
+				name:'list',
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	},
+  },
+};
+</script>
+
+<style>
+</style>
