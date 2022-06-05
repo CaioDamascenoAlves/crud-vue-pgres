@@ -13,9 +13,9 @@
 							id="name"
 							name="name"
 							class="form-control"
-							placeholder="Type your name"
+							placeholder="Type name Called"
 							v-model="calledForm.name"
-							:class="{'is-invalid' :isSubmitted && $v.calledForm.name.$error,}"
+							:class="{'is-invalid': isSubmitted && $v.calledForm.name.$error,}"
 						/>
 						<div 
 							v-if="isSubmitted && !$v.calledForm.name.required" 
@@ -72,7 +72,7 @@
 							:class="{ 'is-invalid' :isSubmitted && $v.calledForm.called_date.$error,}"
 						>
 						<div 
-							v-if="isSubmitted && !$v.calledForm.call_date.required" 
+							v-if="isSubmitted && !$v.calledForm.called_date.required" 
 								class="invalid-feedback">'Called Call Date' field is required!
 						</div>
 					</div>
@@ -110,7 +110,9 @@ import { required } from 'vuelidate/lib/validators';
 import CalledService from '../../../services/CalledService';
 
 export default {
-	name : 'CreateCalledComponent',
+	components: { 
+		name: 'CreateCalledComponent'
+	},
   data() {
     return {
 		calledForm: {
@@ -131,7 +133,7 @@ export default {
 		  category: { required },
 		  called_date: { required },
 		  description: { required },
-	  }
+	  },
   },
   methods: {
 	handleSubmitForm() {
@@ -149,7 +151,7 @@ export default {
 				name:'list',
 			});
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	},
   },
