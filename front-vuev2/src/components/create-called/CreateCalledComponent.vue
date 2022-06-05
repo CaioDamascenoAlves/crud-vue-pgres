@@ -104,57 +104,5 @@
 	</div>
 </template>
 
-<script>
-
-import { required } from 'vuelidate/lib/validators';
-import CalledService from '../../../services/CalledService';
-
-export default {
-	components: { 
-		name: 'CreateCalledComponent'
-	},
-  data() {
-    return {
-		calledForm: {
-			name: null,
-			state : null,
-			category: null,
-			called_date: null,
-			description: null 
-		},
-		isSubmitted: false,
-    };
-	
-  },
-  validations: {
-	  calledForm: {
-		  name: { required },
-		  state: { required },
-		  category: { required },
-		  called_date: { required },
-		  description: { required },
-	  },
-  },
-  methods: {
-	handleSubmitForm() {
-		this.isSubmitted = true;
-
-		this.$v.$touch();
-		if (this.$v.$invalid){
-			return;
-		}
-	},
-	async submitNewCalled() {
-		try {
-			await CalledService.createNewCalled(this.calledForm);
-			this.$router.push({
-				name:'list',
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	},
-  },
-};
-</script>
+<script src="./CreateCalled.js"></script>
 
