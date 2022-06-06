@@ -28,6 +28,7 @@ exports.createCalled = async (req, res) => {
   }
 };
 
+
 // ==> Método responsável por listar todos os 'Calleds':
 exports.listAllCalleds = async (req, res) => {
   try {

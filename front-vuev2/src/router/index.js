@@ -20,6 +20,12 @@ const routes = [
 	  name: 'update',
 	  component: () => import('../components/edit-called/EditCalledComponent.vue'),
 	},
+	{
+	  path: '/login-called',
+	  name: 'login',
+	  component: () => import('../components/login-called/LoginComponent.vue'),
+	},
+
   ];
 
   const router = new VueRouter({

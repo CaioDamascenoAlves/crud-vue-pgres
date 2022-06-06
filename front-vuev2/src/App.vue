@@ -9,6 +9,9 @@
 				  <li class="nav-item">
 					  <router-link class="nav-link" to="/list-called">List All Called</router-link>
 				  </li>
+				  <li class="nav-item">
+					  <router-link class="nav-link" to="/login-called">Login</router-link>
+				  </li>
 			  </ul>
 	  </nav>
 	  <div class="container mt-5">
