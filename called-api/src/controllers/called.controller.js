@@ -37,7 +37,7 @@ exports.listAllCalleds = async (req, res) => {
 										state, 
 										category,
 										to_char(called_date, 'yyyy-MM-dd') as called_date 
-									  FROM called ORDER BY name asc`);
+									  FROM called ORDER BY called_id desc`);
 	  res.status(200).send(rows);
 	} catch (error) {
 	  console.error('listAllCalleds', error);
