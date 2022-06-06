@@ -5,9 +5,9 @@
       <thead>
         <tr>
           <th class="text-center">Called Name</th>
-          <th class="text-center">State Called</th>
-          <th class="text-center">Category Called</th>
-          <th class="text-center">Call Data</th>
+          <th class="text-center">State</th>
+          <th class="text-center">Category</th>
+          <th class="text-center">Called Date</th>
           <th class="text-center">Description</th>
           <th class="text-center">Actions</th>
         </tr>
@@ -15,15 +15,15 @@
       <tbody>
         <tr v-for="called in calleds" :key="called.called_id">
           <td>{{ called.name }}</td>
-          <td>{{ called.job_role }}</td>
-          <td>{{ called.salary }}</td>
-          <td>{{ called.birth }}</td>
-          <td>{{ called.called_registration }}</td>
+          <td>{{ called.state }}</td>
+          <td>{{ called.category }}</td>
+          <td>{{ called.called_date }}</td>
+          <td>{{ called.description }}</td>
           <td>
             <router-link
               :to="{ name: 'update', params: { id: called.called_id } }"
               class="btn btn-success">
-              <font-awesome-icon :icon="['fas', 'file-pen']" /> Edit
+              <font-awesome-icon :icon="['fas', 'user-edit']" /> Edit
             </router-link>
           </td>
           <td>
@@ -37,5 +37,6 @@
   </div>
 </template>
 
-<script src="./ListCalled.js">
-</script>
+<script src="./ListCalled.js"></script>
+
+<style src="" scoped></style>

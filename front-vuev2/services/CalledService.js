@@ -65,7 +65,7 @@ export default {
 	 * Metodo responsavel por excluir determinada 'Called' por Id
 	 * (DELETE): localhost:3000/api/calldes/:id
 	 */
-	async deleteCalleds(id) {
+	async deleteCalled(id) {
 		try {
 			const response = await Api().delete(`/calleds/${id}`);
 			return response.data;
