@@ -37,25 +37,5 @@
   </div>
 </template>
 
-<script>
-import CalledService from '../../../services/CalledService';
-
-
-export default {
-  name: 'ListCalledComponent',
-  data() {
-    return {
-      calleds: [],
-    };
-  },
-  mounted() {
-    this.listAllCalleds();
-  },
-  methods: {
-    async listAllCalleds() {
-      const response = await CalledService.getCalleds();
-      this.calleds = response;
-    },
-	}
-};
+<script src="./ListCalled.js">
 </script>
