@@ -4,6 +4,6 @@ CREATE TABLE called (
 	state VARCHAR(255) NOT NULL,
 	category VARCHAR(255) NOT NULL,
 	called_date DATE NOT NULL,
-	description INTEGER NOT NULL
+	description VARCHAR(255) NOT NULL
 )
 

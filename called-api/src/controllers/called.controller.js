@@ -30,23 +30,22 @@ exports.createCalled = async (req, res) => {
 
 // ==> Método responsável por listar todos os 'Calleds':
 exports.listAllCalleds = async (req, res) => {
-  try {
-    const { rows } = await db.query(`SELECT 
-                                      called_id,
-                                      name, 
-                                      state, 
-                                      category, 
-                                      called_date to_char(called_date, 'yyyy-MM-dd') as call_date, 
-                                      description
-                                    FROM called ORDER BY name asc`);
-    res.status(200).send(rows);
-  } catch (error) {
-    console.error('listAllCalled', error);
-    res.status(500).send({
-      message: "Ocorreu um erro."
-    });
-  }
-};
+	try {
+	  const { rows } = await db.query(`SELECT 
+										called_id,
+										name, 
+										state, 
+										category,
+										to_char(called_date, 'yyyy-MM-dd') as called_date 
+									  FROM called ORDER BY name asc`);
+	  res.status(200).send(rows);
+	} catch (error) {
+	  console.error('listAllCalleds', error);
+	  res.status(500).send({
+		message: "Ocorreu um erro."
+	  });
+	}
+  };
 
 // ==> Método responsável por listar um determinado 'Called' por Id:
 exports.findCalledById = async (req, res) => {
@@ -57,7 +56,7 @@ exports.findCalledById = async (req, res) => {
 										name, 
 										state, 
 										category, 
-										called_date to_char(call_date, 'yyyy-MM-dd') as call_date, 
+										to_char(called_date, 'yyyy-MM-dd') as called_date, 
 										description
                                     FROM called WHERE called_id = $1`,
       [id]
