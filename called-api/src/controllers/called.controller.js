@@ -36,7 +36,8 @@ exports.listAllCalleds = async (req, res) => {
 										name, 
 										state, 
 										category,
-										to_char(called_date, 'yyyy-MM-dd') as called_date 
+										to_char(called_date, 'yyyy-MM-dd') as called_date,
+										description 
 									  FROM called ORDER BY called_id desc`);
 	  res.status(200).send(rows);
 	} catch (error) {
