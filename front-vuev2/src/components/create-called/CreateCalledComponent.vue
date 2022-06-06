@@ -104,6 +104,7 @@
 	</div>
 </template>
 
+<<<<<<< HEAD
 <script >
 import { required } from 'vuelidate/lib/validators';
 import CalledService from '../../../services/CalledService';
@@ -167,4 +168,7 @@ export default {
   },
 };
 </script>
+=======
+<script src="./CreateCalled.js"></script>
+>>>>>>> 3083125dcd0a5b221f566722ed21944dca4bc3c5
 

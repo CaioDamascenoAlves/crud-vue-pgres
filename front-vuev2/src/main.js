@@ -8,6 +8,10 @@ import router from './router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/nprogress/nprogress.css';
 import 'sweetalert2/dist/sweetalert2.min.css';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3083125dcd0a5b221f566722ed21944dca4bc3c5
 
 Vue.config.productionTip = false;
 
