@@ -12,7 +12,7 @@
           </div>
           <div class="d-flex justify-content-between align-items-end">
 
-            <a href="" class="d">cadastre-se</a>
+            <a href="../create-user/" class="d">cadastre-se</a>
             <button class="btn btn-primary">Entrar</button>
           </div>
           
